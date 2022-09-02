@@ -6,3 +6,15 @@ const loadNewsCategory = async () => {
 }
 loadNewsCategory()
 
+const displayNewsCategory = async (categories) => {
+    const showCategory = document.getElementById('categories-list');
+    categories.forEach(category => {
+        // console.log(category)
+        const li = document.createElement('li');
+        li.innerHTML = `
+        <a onclick =loadNews()>${category.category_name}</a>
+        `;
+        showCategory.appendChild(li);
+
+    })
+}
