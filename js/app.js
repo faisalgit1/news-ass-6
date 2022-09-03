@@ -22,6 +22,7 @@ const displayNewsCategory = async (categories) => {
 
     })
 }
+
 const loading = isloading => {
     const spinner = document.getElementById('spinner')
     if (isloading === true) {
@@ -31,19 +32,37 @@ const loading = isloading => {
         spinner.classList.add('d-none')
     }
 }
-const loadNews = async (category_id) => {
+
+
+const loadNews = (category_id) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
-    const res = await fetch(url)
-    const data = await res.json()
-    displayLoadNews(data.data)
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayLoadNews(data.data))
+        .catch(error => console.log(error))
     loading(false)
 }
 
-loadNews()
-const displayLoadNews = async (newses) => {
+
+const displayLoadNews = (newses) => {
 
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
+    /* total found */
+    const foundTotal = document.getElementById('total');
+    foundTotal.innerText = newses.length;
+
+    const noNews = document.getElementById('no-news');
+    /* not found */
+    if (newses.length === 0) {
+        noNews.classList.remove('d-none')
+    }
+    else {
+        noNews.classList.add('d-none')
+    }
+
+    newses.sort((a, b) => b.total_view - a.total_view)
+
     newses.forEach(news => {
         const { title, thumbnail_url, details, author, total_view, image_url, rating } = news;
         const { name, published_date, img } = author;
@@ -76,8 +95,9 @@ const displayLoadNews = async (newses) => {
         `
         newsContainer.appendChild(div);
     })
+    loading(false)
 }
-
+loadNews('05')
 const loadIdNews = (modal) => {
     const url = `https://openapi.programming-hero.com/api/news/${modal}`
     fetch(url)
