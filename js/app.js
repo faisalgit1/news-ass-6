@@ -1,9 +1,11 @@
+
+
 const loadNewsCategory = async () => {
     const url = ` https://openapi.programming-hero.com/api/news/categories`
     const res = await fetch(url)
     const data = await res.json()
     displayNewsCategory(data.data.news_category)
-    return data;
+
 }
 loadNewsCategory()
 
@@ -29,11 +31,15 @@ const loadNews = async (category_id) => {
 
 loadNews()
 const displayLoadNews = async (newses) => {
+    if (newses.length === 0) {
+        alert('no data');
+    }
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
     newses.forEach(news => {
-        const { title, thumbnail_url, details, author, total_view } = news;
+        const { title, thumbnail_url, details, author, total_view, image_url, rating } = news;
         const { name, published_date, img } = author;
+        const { number } = rating;
         console.log(news)
         const div = document.createElement('div');
         div.innerHTML = `
@@ -62,7 +68,7 @@ const displayLoadNews = async (newses) => {
                     </div>
                 </div>
                 <div class="stat">
-                <button class="btn btn-primary w-20">Details</button>
+                <label for="my-modal-3" onclick="showModal('${image_url}', '${title}', '${number}', '${details}')" class="btn btn-primary w-20 modal-button">Details</label>
                 <div>
                 
                 </div>
@@ -70,4 +76,14 @@ const displayLoadNews = async (newses) => {
             `;
         newsContainer.appendChild(div);
     })
+}
+
+const showModal = async (image_url, title, number, details) => {
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
+    <img class="h-80 w-70" src="${image_url ? image_url : 'not found'}" alt="Album">
+    <h2 class="card-title text-2xl font-extrabold">${title ? title : 'not found'}</h2>
+    <h2 class="text-2xl font-semibold">Ratings:${number}</h2>
+    <P class="font-semibold">${details} <P>
+`;
 }
