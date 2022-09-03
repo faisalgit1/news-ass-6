@@ -6,60 +6,84 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- daisyUI and tailwindcss -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/24ce24bc0b.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 
 </head>
-<!-- nav var -->
-<header class="w-3/4 mx-auto">
-    <div class="navbar bg-base-100">
-        <div class="flex-1">
-            <a class="btn btn-ghost normal-case text-xl">Daily News</a>
-        </div>
-        <div class="flex-none">
-            <ul class="menu menu-horizontal p-0">
-                <li><a>Home</a></li>
-                <li><a>Questions</a></li>
-            </ul>
-            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                    <img src="https://placeimg.com/80/80/people" />
-                </div>
-            </label>
-        </div>
-    </div>
-</header>
 
 <body>
-    <!-- Categories List -->
-    <section class="p-20">
-        <div id="categories-list" class="h-30 menu menu-horizontal grid grid-cols-8 gap-4 content-start ...">
+    <header>
+        <!-- nav var -->
+        <nav class="navbar navbar-expand-lg bg-dark-blue text-light py-lg-4 pt-4">
 
+            <div class="container">
+                <a class="navbar-brand fs-5 fw-bold" href="#">
+                    Daily News
+                </a>
+                <div class="collapse navbar-collapse justify-content-end me-5" id="navbarSupportedContent">
+                    <ul class="navbar-nav  mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link active fs-5  fw-semibold" aria-current="page" href="#home">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  fs-5 fw-semibold text-danger" href="blog.html">Blogs</a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <img src="images/my-bg2.png" alt="" width="50">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <hr>
+        <!-- Categories List -->
+        <section class="container">
+            <div id="categories-list" class="catagory d-flex justify-content-between flex-lg-row flex-column ">
+
+            </div>
+        </section>
+        </section>
+    </header>
+    <!-- spinner -->
+    <section>
+        <div id="spinner" class="d-flex justify-content-center d-none">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
     </section>
-    <!-- spinner -->
-    <section id="spinner" class="text-center hidden ">
-        <progress class="progress w-60"></progress>
-    </section>
     <!-- News Container -->
-    <section id="" class="p-20">
-        <div id="news-container" class="grow grid grid-cols-1 gap-4">
-
+    <section class="container my-5">
+        <div id="news-container" class="row row-cols-1 row-cols-md-3 g-4">
         </div>
     </section>
     <!-- Modal -->
-    <section>
-        <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-        <div class="modal">
-            <div class="modal-box relative">
-                <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                <div id="modal-body">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="body-modal">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Bootstrap -->
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 
